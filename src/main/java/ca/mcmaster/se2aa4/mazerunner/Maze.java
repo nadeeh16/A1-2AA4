@@ -19,6 +19,34 @@ class Maze{
         loadMaze(mazePath);
     }
 
+    public int findEntry(){
+        for(int row = 0; row < rows; row++){
+            if(mazeGrid[row][0] != '#'){
+                logger.info("Entrance: (" + row + ", 0)");
+                return row;
+            }
+        }
+        return 0;
+    }
+
+    public int findExit(){
+        int finalCol = cols - 1;
+        for(int row = 0; row < rows; row++){
+            if(mazeGrid[row][finalCol] != '#'){
+                logger.info("Exit: (" + row + ", "+ finalCol + ")");
+                return row;
+            }
+        }
+        return 0;
+    }
+
+    public int getCols(){
+        return cols;
+    }
+
+    public int getRows(){
+        return rows;
+    }
 
     public void findDimensions(String mazePath){
         rows = 0;

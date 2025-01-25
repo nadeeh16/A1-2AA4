@@ -46,6 +46,8 @@ public class Main {
 
             Maze maze = new Maze(mazePath);
             maze.printMaze();
+            maze.findEntry();
+            maze.findExit();
 
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");
