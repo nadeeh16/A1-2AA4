@@ -5,16 +5,33 @@ import java.io.File;
 import java.io.FileReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.commons.cli.*;
+import java.io.*;
 
 public class Main {
 
     private static final Logger logger = LogManager.getLogger();
 
+
     public static void main(String[] args) {
-        System.out.println("** Starting Maze Runner");
+    //add the option
+        Options options = new Options();
+        options.addOption("i", "input", true, "maze file");
+        options.addOption("p", "path", true, "Path you wanna take");
+
+        //create a parser 
+        CommandLineParser parser = new DefaultParser();
+
+        logger.info("** Starting Maze Runner");
         try {
-            System.out.println("**** Reading the maze from file " + args[0]);
-            BufferedReader reader = new BufferedReader(new FileReader(args[0]));
+
+            CommandLine cmd = parser.parse(options, args);
+
+            String mazePath = cmd.getOptionValue("i");
+            
+
+            logger.info("**** Reading the maze from file " + mazePath);
+            BufferedReader reader = new BufferedReader(new FileReader(mazePath));
             String line;
             while ((line = reader.readLine()) != null) {
                 for (int idx = 0; idx < line.length(); idx++) {
@@ -26,11 +43,16 @@ public class Main {
                 }
                 System.out.print(System.lineSeparator());
             }
+
+            Maze maze = new Maze(mazePath);
+            maze.printMaze();
+
         } catch(Exception e) {
-            System.err.println("/!\\ An error has occured /!\\");
+            logger.error("/!\\ An error has occured /!\\");
         }
-        System.out.println("**** Computing path");
-        System.out.println("PATH NOT COMPUTED");
-        System.out.println("** End of MazeRunner");
+
+        // logger.info("PATH NOT COMPUTED");
+        // logger.info("**** Computing path");
+        logger.info("** End of MazeRunner");
     }
-}
+}  
