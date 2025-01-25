@@ -40,6 +40,15 @@ class Maze{
         return 0;
     }
 
+    public boolean checkWall(int row, int col){
+        if (mazeGrid[row][col] == ' '){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public int getCols(){
         return cols;
     }
@@ -86,12 +95,12 @@ class Maze{
         }
     }
 
-    public void printMaze(){
-        for(int row = 0; row < rows; row++){
-            for(int col = 0; col < cols; col++){
-                System.out.print(mazeGrid[row][col]);
-            }
-            System.out.println();
-        }
-    }
+    // public void printMaze(){
+    //     for(int row = 0; row < rows; row++){
+    //         for(int col = 0; col < cols; col++){
+    //             System.out.print(mazeGrid[row][col]);
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 }

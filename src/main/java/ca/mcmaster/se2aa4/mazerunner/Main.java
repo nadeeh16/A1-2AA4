@@ -28,7 +28,7 @@ public class Main {
             CommandLine cmd = parser.parse(options, args);
 
             String mazePath = cmd.getOptionValue("i");
-            
+            String takenPath = cmd.getOptionValue("p");
 
             logger.info("**** Reading the maze from file " + mazePath);
             BufferedReader reader = new BufferedReader(new FileReader(mazePath));
@@ -45,9 +45,8 @@ public class Main {
             }
 
             Maze maze = new Maze(mazePath);
-            maze.printMaze();
-            maze.findEntry();
-            maze.findExit();
+            MazeRunner runner = new MazeRunner(maze);
+            runner.checkPath(takenPath);
 
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");
