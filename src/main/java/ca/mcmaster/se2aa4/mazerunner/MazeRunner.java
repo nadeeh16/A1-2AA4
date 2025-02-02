@@ -92,7 +92,7 @@ class MazeRunner{
                             playerCol++;
                             return false;
                         }
-                        if(maze.checkWall(playerRow, playerCol+1)){
+                        if(maze.checkWall(this)){
                             playerCol++; // Move forward
                             logger.info("Facing right, moved forward");
                             break;
@@ -112,7 +112,7 @@ class MazeRunner{
                             playerRow++;
                             return false;
                         }
-                        if(maze.checkWall(playerRow + 1, playerCol)){
+                        if(maze.checkWall(this)){
                             playerRow++; // Move forward
                             logger.info("Facing down, moved forward");
                             break;
@@ -132,7 +132,7 @@ class MazeRunner{
                             playerCol--;
                             return false;
                         }
-                        if(maze.checkWall(playerRow, playerCol - 1)){
+                        if(maze.checkWall(this)){
                             playerCol--; // Move forward
                             logger.info("Facing left, moved forward");
                             break;
@@ -152,7 +152,7 @@ class MazeRunner{
                             playerRow--;
                             return false;
                         }
-                        if(maze.checkWall(playerRow - 1, playerCol)){
+                        if(maze.checkWall(this)){
                             playerRow--; // Move forward
                             logger.info("Facing up, moved forward");
                             break;
@@ -175,6 +175,21 @@ class MazeRunner{
         }
     }
 
+    public void moveForward(){
+        if(dir == 'U'){
+            playerRow--;
+        }
+        else if(dir == 'R'){
+            playerCol++;
+        }
+        else if(dir == 'D'){
+            playerRow++;
+        }
+        else if(dir == 'L'){
+            playerCol--;
+        }
+    }
+
     public void checkPath(String path){
         if(move(path)){
             logger.info("It was the correct path");
@@ -183,6 +198,25 @@ class MazeRunner{
             int exitcol = maze.getCols() - 1;
             logger.info("Runner ended at: (" + playerRow + ", " + playerCol + ") while exit is at: (" + exit + ", " + exitcol + ")");
             logger.info("It was the wrong path");
+        }
+    }
+
+    public int getRow(){
+        return playerRow;
+    }
+    public int getCol(){
+        return playerCol;
+    }
+    public char getDir(){
+        return dir;
+    }
+
+    public Boolean onExit(){
+        if(playerCol == maze.getCols() - 1 && playerRow == exit){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

@@ -40,13 +40,30 @@ class Maze{
         return 0;
     }
 
-    public boolean checkWall(int row, int col){
-        if (mazeGrid[row][col] == ' '){
-            return true;
+    public boolean checkWall(MazeRunner thisRunner){
+        int runnerRow = thisRunner.getRow();
+        int runnerCol = thisRunner.getCol();
+        if (thisRunner.getDir() == 'U'){
+            if (mazeGrid[runnerRow-1][runnerCol] == ' '){
+                return true;
+            }
         }
-        else{
-            return false;
+        else if (thisRunner.getDir() == 'D'){
+            if (mazeGrid[runnerRow+1][runnerCol] == ' '){
+                return true;
+            }
         }
+        else if (thisRunner.getDir() == 'R'){
+            if (mazeGrid[runnerRow][runnerCol+1] == ' '){
+                return true;
+            }
+        }
+        else if (thisRunner.getDir() == 'L'){
+            if (mazeGrid[runnerRow][runnerCol-1] == ' '){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getCols(){
