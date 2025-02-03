@@ -30,6 +30,8 @@ public class Main {
             String mazePath = cmd.getOptionValue("i");
             String takenPath = cmd.getOptionValue("p");
 
+            
+
             logger.info("**** Reading the maze from file " + mazePath);
             BufferedReader reader = new BufferedReader(new FileReader(mazePath));
             String line;
@@ -45,8 +47,14 @@ public class Main {
             }
 
             Maze maze = new Maze(mazePath);
-            MazeRunner runner = new MazeRunner(maze);
-            runner.checkPath(takenPath);
+            if(takenPath == null){
+                //use path finder...
+                PathFinder pathFinder = new PathFinder(mazePath, maze);
+                pathFinder.findPath();
+            }else{
+                MazeRunner runner = new MazeRunner(maze);
+                runner.checkPath(takenPath);
+            }
 
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");

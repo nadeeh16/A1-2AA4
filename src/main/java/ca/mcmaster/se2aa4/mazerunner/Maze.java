@@ -66,6 +66,32 @@ class Maze{
         return false;
     }
 
+    public boolean checkRight(MazeRunner thisRunner){
+        int runnerRow = thisRunner.getRow();
+        int runnerCol = thisRunner.getCol();
+        if (thisRunner.getDir() == 'U'){
+            if (mazeGrid[runnerRow][runnerCol+1] == ' '){
+                return true;
+            }
+        }
+        else if (thisRunner.getDir() == 'D'){
+            if (mazeGrid[runnerRow][runnerCol-1] == ' '){
+                return true;
+            }
+        }
+        else if (thisRunner.getDir() == 'R'){
+            if (mazeGrid[runnerRow+1][runnerCol] == ' '){
+                return true;
+            }
+        }
+        else if (thisRunner.getDir() == 'L'){
+            if (mazeGrid[runnerRow-1][runnerCol] == ' '){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getCols(){
         return cols;
     }
