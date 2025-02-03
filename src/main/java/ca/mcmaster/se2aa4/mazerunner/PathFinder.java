@@ -32,8 +32,7 @@ public class PathFinder {
                 count++;
             }
         }
-
-        logger.info(factorizedPath.toString());
+        System.out.println(factorizedPath.toString());
     }
 
     public void findPath(){
@@ -61,7 +60,7 @@ public class PathFinder {
             }
         }
 
-        logger.info(path.toString());
+        //logger.info(path.toString());
         factorizePath();
     }
 }

@@ -22,7 +22,7 @@ public class Main {
         //create a parser 
         CommandLineParser parser = new DefaultParser();
 
-        logger.info("** Starting Maze Runner");
+        // logger.info("** Starting Maze Runner");
         try {
 
             CommandLine cmd = parser.parse(options, args);
@@ -32,19 +32,19 @@ public class Main {
 
             
 
-            logger.info("**** Reading the maze from file " + mazePath);
-            BufferedReader reader = new BufferedReader(new FileReader(mazePath));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                for (int idx = 0; idx < line.length(); idx++) {
-                    if (line.charAt(idx) == '#') {
-                        System.out.print("WALL ");
-                    } else if (line.charAt(idx) == ' ') {
-                        System.out.print("PASS ");
-                    }
-                }
-                System.out.print(System.lineSeparator());
-            }
+            // logger.info("**** Reading the maze from file " + mazePath);
+            // BufferedReader reader = new BufferedReader(new FileReader(mazePath));
+            // String line;
+            // while ((line = reader.readLine()) != null) {
+            //     for (int idx = 0; idx < line.length(); idx++) {
+            //         if (line.charAt(idx) == '#') {
+            //             System.out.print("WALL ");
+            //         } else if (line.charAt(idx) == ' ') {
+            //             System.out.print("PASS ");
+            //         }
+            //     }
+            //     System.out.print(System.lineSeparator());
+            // }
 
             Maze maze = new Maze(mazePath);
             if(takenPath == null){
@@ -57,11 +57,11 @@ public class Main {
             }
 
         } catch(Exception e) {
-            logger.error("/!\\ An error has occured /!\\");
+            System.out.println("/!\\ An error has occured /!\\");
         }
 
         // logger.info("PATH NOT COMPUTED");
         // logger.info("**** Computing path");
-        logger.info("** End of MazeRunner");
+        // logger.info("** End of MazeRunner");
     }
 }  

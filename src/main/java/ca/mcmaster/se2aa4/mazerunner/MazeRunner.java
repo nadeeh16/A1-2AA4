@@ -34,19 +34,15 @@ class MazeRunner{
             switch(currDir){
                 case 'R':
                     dir = 'D';
-                    logger.info("Turned right, now facing down");
                     break;
                 case 'D':
                     dir = 'L';
-                    logger.info("Turned right, now facing left");
                     break;
                 case 'L':
                     dir = 'U';
-                    logger.info("Turned right, now facing up");
                     break;
                 case 'U':
                     dir = 'R';
-                    logger.info("Turned right, now facing right");
                     break;
             }
         }
@@ -54,19 +50,15 @@ class MazeRunner{
             switch(currDir){
                 case 'R':
                     dir = 'U';
-                    logger.info("Turned left, now facing up");
                     break;
                 case 'D':
                     dir = 'R';
-                    logger.info("Turned left, now facing right");
                     break;
                 case 'L':
                     dir = 'D';
-                    logger.info("Turned left, now facing down");
                     break;
                 case 'U':
                     dir = 'L';
-                    logger.info("Turned left, now facing left");
                     break;
             }
         }
@@ -94,7 +86,6 @@ class MazeRunner{
                         }
                         if(maze.checkWall(this)){
                             playerCol++; // Move forward
-                            logger.info("Facing right, moved forward");
                             break;
                         }
                         return false;
@@ -114,7 +105,6 @@ class MazeRunner{
                         }
                         if(maze.checkWall(this)){
                             playerRow++; // Move forward
-                            logger.info("Facing down, moved forward");
                             break;
                         }
                         return false;
@@ -134,7 +124,6 @@ class MazeRunner{
                         }
                         if(maze.checkWall(this)){
                             playerCol--; // Move forward
-                            logger.info("Facing left, moved forward");
                             break;
                         }
                         return false;
@@ -154,7 +143,6 @@ class MazeRunner{
                         }
                         if(maze.checkWall(this)){
                             playerRow--; // Move forward
-                            logger.info("Facing up, moved forward");
                             break;
                         }
                         return false;
@@ -192,12 +180,12 @@ class MazeRunner{
 
     public void checkPath(String path){
         if(move(path)){
-            logger.info("It was the correct path");
+            System.out.println("Correct path");
         }
         else{
             int exitcol = maze.getCols() - 1;
-            logger.info("Runner ended at: (" + playerRow + ", " + playerCol + ") while exit is at: (" + exit + ", " + exitcol + ")");
-            logger.info("It was the wrong path");
+            //logger.info("Runner ended at: (" + playerRow + ", " + playerCol + ") while exit is at: (" + exit + ", " + exitcol + ")");
+            System.out.println("Incorrect path");
         }
     }
 
