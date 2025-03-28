@@ -10,6 +10,8 @@ public class PathFinder {
     private StringBuilder factorizedPath;
     private static final Logger logger = LogManager.getLogger();
 
+    private String factorizedPaths = "";
+
     public PathFinder(String mazePath, Maze inputMaze){
         maze = new Maze(mazePath);
         pathFinder = new MazeRunner(maze);
@@ -32,7 +34,12 @@ public class PathFinder {
                 count++;
             }
         }
+        factorizedPaths = factorizedPath.toString();
         System.out.println(factorizedPath.toString());
+    }
+
+    public String getFactorizedPaths() {
+        return factorizedPaths;
     }
 
     public void findPath(){
