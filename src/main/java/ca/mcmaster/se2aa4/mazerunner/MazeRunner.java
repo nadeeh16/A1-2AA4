@@ -12,9 +12,10 @@ import java.lang.*;
 class MazeRunner{
     private int playerRow;
     private int playerCol;
-    private char dir;
     private int entrance;
     private int exit;
+
+    private Direction dir;
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -22,45 +23,22 @@ class MazeRunner{
 
     public MazeRunner(Maze inputMaze){
         maze = inputMaze;
-        dir = 'R';
+        dir = Direction.R;
         entrance = maze.findEntry();
         playerRow = entrance;
         playerCol = 0;
         exit = maze.findExit();
     }
 
-    public void changeDir(char currDir, char turnDir){
-        if(turnDir == 'R'){
-            switch(currDir){
-                case 'R':
-                    dir = 'D';
-                    break;
-                case 'D':
-                    dir = 'L';
-                    break;
-                case 'L':
-                    dir = 'U';
-                    break;
-                case 'U':
-                    dir = 'R';
-                    break;
-            }
+    public void changeDir(char turnDir){
+        if(turnDir == 'L'){
+            dir = dir.turnLeft();
         }
-        else if(turnDir == 'L'){
-            switch(currDir){
-                case 'R':
-                    dir = 'U';
-                    break;
-                case 'D':
-                    dir = 'R';
-                    break;
-                case 'L':
-                    dir = 'D';
-                    break;
-                case 'U':
-                    dir = 'L';
-                    break;
-            }
+        else if(turnDir == 'R'){
+            dir = dir.turnRight();
+        }
+        else{
+            logger.info("Invalid direction. Must be L or R.");
         }
     }
 
@@ -77,7 +55,7 @@ class MazeRunner{
         char[] movementArray = path.toCharArray();
 
         for (char move : movementArray) {
-            if (dir == 'R') {
+            if (dir == Direction.R) {
                 switch (move) {
                     case 'F':
                         if(checkBounds(playerRow, playerCol+1) == false){
@@ -90,13 +68,13 @@ class MazeRunner{
                         }
                         return false;
                     case 'R':
-                        changeDir('R', 'R'); // Turn right
+                        changeDir('R'); // Turn right
                         break;
                     case 'L':
-                        changeDir('R', 'L'); // Turn left
+                        changeDir('L'); // Turn left
                         break;
                 }
-            } else if (dir == 'D') {
+            } else if (dir == Direction.D) {
                 switch (move) {
                     case 'F':
                         if(checkBounds(playerRow + 1, playerCol) == false){
@@ -109,13 +87,13 @@ class MazeRunner{
                         }
                         return false;
                     case 'R':
-                        changeDir('D', 'R'); // Turn right
+                        changeDir('R'); // Turn right
                         break;
                     case 'L':
-                        changeDir('D', 'L'); // Turn left
+                        changeDir('L'); // Turn left
                         break;
                 }
-            } else if (dir == 'L') {
+            } else if (dir == Direction.L) {
                 switch (move) {
                     case 'F':
                         if(checkBounds(playerRow, playerCol - 1) == false){
@@ -128,13 +106,13 @@ class MazeRunner{
                         }
                         return false;
                     case 'R':
-                        changeDir('L', 'R'); // Turn right
+                        changeDir('R'); // Turn right
                         break;
                     case 'L':
-                        changeDir('L', 'L'); // Turn left
+                        changeDir('L'); // Turn left
                         break;
                 }
-            } else if (dir == 'U') {
+            } else if (dir == Direction.U) {
                 switch (move) {
                     case 'F':
                         if(checkBounds(playerRow - 1, playerCol) == false){
@@ -147,10 +125,10 @@ class MazeRunner{
                         }
                         return false;
                     case 'R':
-                        changeDir('U', 'R'); // Turn right
+                        changeDir('R'); // Turn right
                         break;
                     case 'L':
-                        changeDir('U', 'L'); // Turn left
+                        changeDir('L'); // Turn left
                         break;
                 }
             }
@@ -164,16 +142,16 @@ class MazeRunner{
     }
 
     public void moveForward(){
-        if(dir == 'U'){
+        if(dir == Direction.U){
             playerRow--;
         }
-        else if(dir == 'R'){
+        else if(dir == Direction.R){
             playerCol++;
         }
-        else if(dir == 'D'){
+        else if(dir == Direction.D){
             playerRow++;
         }
-        else if(dir == 'L'){
+        else if(dir == Direction.L){
             playerCol--;
         }
     }
@@ -195,7 +173,7 @@ class MazeRunner{
     public int getCol(){
         return playerCol;
     }
-    public char getDir(){
+    public Direction getDir(){
         return dir;
     }
 

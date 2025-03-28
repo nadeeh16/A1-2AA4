@@ -43,22 +43,22 @@ class Maze{
     public boolean checkWall(MazeRunner thisRunner){
         int runnerRow = thisRunner.getRow();
         int runnerCol = thisRunner.getCol();
-        if (thisRunner.getDir() == 'U'){
+        if (thisRunner.getDir() == Direction.U){
             if (mazeGrid[runnerRow-1][runnerCol] == ' '){
                 return true;
             }
         }
-        else if (thisRunner.getDir() == 'D'){
+        else if (thisRunner.getDir() == Direction.D){
             if (mazeGrid[runnerRow+1][runnerCol] == ' '){
                 return true;
             }
         }
-        else if (thisRunner.getDir() == 'R'){
+        else if (thisRunner.getDir() == Direction.R){
             if (mazeGrid[runnerRow][runnerCol+1] == ' '){
                 return true;
             }
         }
-        else if (thisRunner.getDir() == 'L'){
+        else if (thisRunner.getDir() == Direction.L){
             if (mazeGrid[runnerRow][runnerCol-1] == ' '){
                 return true;
             }
@@ -69,22 +69,22 @@ class Maze{
     public boolean checkRight(MazeRunner thisRunner){
         int runnerRow = thisRunner.getRow();
         int runnerCol = thisRunner.getCol();
-        if (thisRunner.getDir() == 'U'){
+        if (thisRunner.getDir() == Direction.U){
             if (mazeGrid[runnerRow][runnerCol+1] == ' '){
                 return true;
             }
         }
-        else if (thisRunner.getDir() == 'D'){
+        else if (thisRunner.getDir() == Direction.D){
             if (mazeGrid[runnerRow][runnerCol-1] == ' '){
                 return true;
             }
         }
-        else if (thisRunner.getDir() == 'R'){
+        else if (thisRunner.getDir() == Direction.R){
             if (mazeGrid[runnerRow+1][runnerCol] == ' '){
                 return true;
             }
         }
-        else if (thisRunner.getDir() == 'L'){
+        else if (thisRunner.getDir() == Direction.L){
             if (mazeGrid[runnerRow-1][runnerCol] == ' '){
                 return true;
             }

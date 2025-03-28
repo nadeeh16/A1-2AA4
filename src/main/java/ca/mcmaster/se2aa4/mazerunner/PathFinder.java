@@ -47,7 +47,7 @@ public class PathFinder {
         while(pathFinder.onExit() == false){
             if(maze.checkRight(pathFinder) == false && maze.checkWall(pathFinder) == false){
                 //meaning there is a wall on both the right and ahead
-                pathFinder.changeDir(pathFinder.getDir(), 'L');
+                pathFinder.changeDir('L');
                 path.append('L');
             }
             else if(maze.checkRight(pathFinder) == false && maze.checkWall(pathFinder)){
@@ -60,7 +60,7 @@ public class PathFinder {
                     pathFinder.moveForward();
                     path.append('F');
                 }else{
-                    pathFinder.changeDir(pathFinder.getDir(), 'R');
+                    pathFinder.changeDir('R');
                     path.append('R');
                 }
                 //theres something on the right and not ahead
