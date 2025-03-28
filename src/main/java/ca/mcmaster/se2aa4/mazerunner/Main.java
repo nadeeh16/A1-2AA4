@@ -49,7 +49,7 @@ public class Main {
             Maze maze = new Maze(mazePath);
             if(takenPath == null){
                 //use path finder...
-                PathFinder pathFinder = new PathFinder(mazePath, maze);
+                PathFinder pathFinder = new PathFinder(maze);
                 pathFinder.findPath();
             }else{
                 MazeRunner runner = new MazeRunner(maze);

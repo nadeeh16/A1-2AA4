@@ -3,18 +3,15 @@ package ca.mcmaster.se2aa4.mazerunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PathFinder {
-    private MazeRunner pathFinder;
-    private Maze maze;
+public class PathFinder extends Runner {
     private StringBuilder path;
     private StringBuilder factorizedPath;
     private static final Logger logger = LogManager.getLogger();
 
     private String factorizedPaths = "";
 
-    public PathFinder(String mazePath, Maze inputMaze){
-        maze = new Maze(mazePath);
-        pathFinder = new MazeRunner(maze);
+    public PathFinder(Maze inputMaze){
+        super(inputMaze);
         path = new StringBuilder();
         factorizedPath = new StringBuilder();
     }
@@ -44,23 +41,23 @@ public class PathFinder {
 
     public void findPath(){
         //move forward until you encounter a wall...
-        while(pathFinder.onExit() == false){
-            if(maze.checkRight(pathFinder) == false && maze.checkWall(pathFinder) == false){
+        while(onExit() == false){
+            if(maze.checkRight(this) == false && maze.checkWall(this) == false){
                 //meaning there is a wall on both the right and ahead
-                pathFinder.changeDir('L');
+                changeDir('L');
                 path.append('L');
             }
-            else if(maze.checkRight(pathFinder) == false && maze.checkWall(pathFinder)){
+            else if(maze.checkRight(this) == false && maze.checkWall(this)){
                 //theres something on the right and not ahead
-                pathFinder.moveForward();
+                moveForward();
                 path.append('F');
             }
-            else if(maze.checkRight(pathFinder)){
-                if(path.charAt(path.length() - 1) == 'R' && maze.checkWall(pathFinder)){
-                    pathFinder.moveForward();
+            else if(maze.checkRight(this)){
+                if(path.charAt(path.length() - 1) == 'R' && maze.checkWall(this)){
+                    moveForward();
                     path.append('F');
                 }else{
-                    pathFinder.changeDir('R');
+                    changeDir('R');
                     path.append('R');
                 }
                 //theres something on the right and not ahead

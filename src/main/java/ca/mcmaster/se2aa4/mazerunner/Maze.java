@@ -40,7 +40,7 @@ class Maze{
         return 0;
     }
 
-    public boolean checkWall(MazeRunner thisRunner){
+    public boolean checkWall(Runner thisRunner){
         int runnerRow = thisRunner.getRow();
         int runnerCol = thisRunner.getCol();
         if (thisRunner.getDir() == Direction.U){
@@ -66,7 +66,7 @@ class Maze{
         return false;
     }
 
-    public boolean checkRight(MazeRunner thisRunner){
+    public boolean checkRight(Runner thisRunner){
         int runnerRow = thisRunner.getRow();
         int runnerCol = thisRunner.getCol();
         if (thisRunner.getDir() == Direction.U){

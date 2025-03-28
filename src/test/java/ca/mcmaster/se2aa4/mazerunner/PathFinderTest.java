@@ -25,7 +25,7 @@ public class PathFinderTest {
         String mazePath = "./examples/straight.maz.txt";
         Maze maze = new Maze(mazePath);
 
-        PathFinder pathFinder = new PathFinder(mazePath, maze);
+        PathFinder pathFinder = new PathFinder(maze);
         pathFinder.findPath();
         assertEquals("4F", out.toString().trim());
     }
@@ -35,7 +35,7 @@ public class PathFinderTest {
         String mazePath = "./examples/direct.maz.txt";
         Maze maze = new Maze(mazePath);
 
-        PathFinder pathFinder = new PathFinder(mazePath, maze);
+        PathFinder pathFinder = new PathFinder(maze);
         pathFinder.findPath();
         assertEquals("FR2FL3FRFLFRFL2F", out.toString().trim());
     }
