@@ -47,14 +47,24 @@ public class Main {
             // }
 
             Maze maze = new Maze(mazePath);
-            if(takenPath == null){
-                //use path finder...
-                PathFinder pathFinder = new PathFinder(maze);
-                pathFinder.traverse();
-            }else{
-                MazeRunner runner = new MazeRunner(maze);
+            
+            Runner runner = RunnerFactory.createRunner(takenPath, maze);
+            if(runner instanceof MazeRunner){
                 runner.traverse(takenPath);
             }
+            else{
+                runner.traverse();
+            }
+            
+            
+            // if(takenPath == null){
+            //     //use path finder...
+            //     PathFinder pathFinder = new PathFinder(maze);
+            //     pathFinder.traverse();
+            // }else{
+            //     MazeRunner runner = new MazeRunner(maze);
+            //     runner.traverse(takenPath);
+            // }
 
         } catch(Exception e) {
             System.out.println("/!\\ An error has occured /!\\");
