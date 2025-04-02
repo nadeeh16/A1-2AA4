@@ -50,10 +50,10 @@ public class Main {
             if(takenPath == null){
                 //use path finder...
                 PathFinder pathFinder = new PathFinder(maze);
-                pathFinder.findPath();
+                pathFinder.traverse();
             }else{
                 MazeRunner runner = new MazeRunner(maze);
-                runner.checkPath(takenPath);
+                runner.traverse(takenPath);
             }
 
         } catch(Exception e) {

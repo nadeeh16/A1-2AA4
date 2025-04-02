@@ -26,7 +26,7 @@ public class PathFinderTest {
         Maze maze = new Maze(mazePath);
 
         PathFinder pathFinder = new PathFinder(maze);
-        pathFinder.findPath();
+        pathFinder.traverse();
         assertEquals("4F", out.toString().trim());
     }
 
@@ -36,7 +36,7 @@ public class PathFinderTest {
         Maze maze = new Maze(mazePath);
 
         PathFinder pathFinder = new PathFinder(maze);
-        pathFinder.findPath();
+        pathFinder.traverse();
         assertEquals("FR2FL3FRFLFRFL2F", out.toString().trim());
     }
 }

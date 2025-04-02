@@ -39,32 +39,37 @@ public class PathFinder extends Runner {
         return factorizedPaths;
     }
 
-    public void findPath(){
-        //move forward until you encounter a wall...
-        while(onExit() == false){
-            if(maze.checkRight(this) == false && maze.checkWall(this) == false){
-                //meaning there is a wall on both the right and ahead
-                changeDir('L');
-                path.append('L');
-            }
-            else if(maze.checkRight(this) == false && maze.checkWall(this)){
-                //theres something on the right and not ahead
+    @Override
+    protected boolean step(char move){
+        return false;
+    }
+
+    @Override
+    protected void step(){
+        if(maze.checkRight(this) == false && maze.checkWall(this) == false){
+            //meaning there is a wall on both the right and ahead
+            changeDir('L');
+            path.append('L');
+        }
+        else if(maze.checkRight(this) == false && maze.checkWall(this)){
+            //theres something on the right and not ahead
+            moveForward();
+            path.append('F');
+        }
+        else if(maze.checkRight(this)){
+            if(path.charAt(path.length() - 1) == 'R' && maze.checkWall(this)){
                 moveForward();
                 path.append('F');
+            }else{
+                changeDir('R');
+                path.append('R');
             }
-            else if(maze.checkRight(this)){
-                if(path.charAt(path.length() - 1) == 'R' && maze.checkWall(this)){
-                    moveForward();
-                    path.append('F');
-                }else{
-                    changeDir('R');
-                    path.append('R');
-                }
-                //theres something on the right and not ahead
-            }
+            //theres something on the right and not ahead
         }
+    }
 
-        //logger.info(path.toString());
+    @Override
+    protected void printResult(){
         factorizePath();
     }
 }

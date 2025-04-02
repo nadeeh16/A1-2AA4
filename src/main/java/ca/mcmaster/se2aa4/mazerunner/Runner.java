@@ -3,7 +3,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Runner {
+public abstract class Runner {
     protected int playerRow;
     protected int playerCol;
     protected int entrance;
@@ -23,6 +23,28 @@ public class Runner {
         playerCol = 0;
         exit = maze.findExit();
     }
+
+    public final void traverse(String path){
+        char[] moveArray = path.toCharArray();
+
+        for(char move : moveArray){
+            if(step(move) == false){
+                break;
+            }
+        }
+        printResult();
+    }
+
+    public final void traverse(){
+        while(onExit() == false){
+            step();
+        }
+        printResult();
+    }
+
+    protected abstract boolean step(char move);
+    protected abstract void step();
+    protected abstract void printResult();
 
     public void changeDir(char turnDir){
         if(turnDir == 'L'){

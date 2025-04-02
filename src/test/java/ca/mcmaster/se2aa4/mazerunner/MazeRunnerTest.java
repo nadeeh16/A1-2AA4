@@ -24,7 +24,7 @@ public class MazeRunnerTest {
         Maze maze = new Maze(mazePath);
 
         MazeRunner mazeRunner = new MazeRunner(maze);
-        mazeRunner.checkPath("FFFF");
+        mazeRunner.traverse("FFFF");
         assertEquals("Correct path", out.toString().trim());
     }
 
@@ -34,7 +34,7 @@ public class MazeRunnerTest {
         Maze maze = new Maze(mazePath);
 
         MazeRunner mazeRunner = new MazeRunner(maze);
-        mazeRunner.checkPath("FFFFF");
+        mazeRunner.traverse("FFFFF");
         assertEquals("Incorrect path", out.toString().trim());
     }
 
@@ -44,8 +44,18 @@ public class MazeRunnerTest {
         Maze maze = new Maze(mazePath);
 
         MazeRunner mazeRunner = new MazeRunner(maze);
-        mazeRunner.checkPath("FFFFRRFRRF");
+        mazeRunner.traverse("FFFFRRFRRF");
         assertEquals("Correct path", out.toString().trim());
+    }
+
+    @Test
+    public void testCrashingintoWall(){
+        String mazePath = "./examples/straight.maz.txt";
+        Maze maze = new Maze(mazePath);
+
+        MazeRunner mazeRunner = new MazeRunner(maze);
+        mazeRunner.traverse("FLFRRFLFFF");
+        assertEquals("Incorrect path", out.toString().trim());
     }
 
     @Test
@@ -54,7 +64,7 @@ public class MazeRunnerTest {
         Maze maze = new Maze(mazePath);
 
         MazeRunner mazeRunner = new MazeRunner(maze);
-        mazeRunner.checkPath("FFFFR");
+        mazeRunner.traverse("FFFFR");
         assertEquals("Correct path", out.toString().trim());
     }
 
@@ -64,7 +74,7 @@ public class MazeRunnerTest {
         Maze maze = new Maze(mazePath);
 
         MazeRunner mazeRunner = new MazeRunner(maze);
-        mazeRunner.checkPath("FFFFRRF");
+        mazeRunner.traverse("FFFFRRF");
         assertEquals("Incorrect path", out.toString().trim());
     }
 }
